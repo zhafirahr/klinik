@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Dec 30, 2019 at 07:31 PM
--- Server version: 10.1.40-MariaDB
--- PHP Version: 7.3.5
+-- Host: 127.0.0.1
+-- Waktu pembuatan: 07 Apr 2022 pada 07.33
+-- Versi server: 10.4.19-MariaDB
+-- Versi PHP: 7.4.20
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -25,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `detail`
+-- Struktur dari tabel `detail`
 --
 
 CREATE TABLE `detail` (
@@ -37,14 +36,14 @@ CREATE TABLE `detail` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `detail`
+-- Dumping data untuk tabel `detail`
 --
 
 INSERT INTO `detail` (`NomorResep`, `KodeObat`, `Dosis`, `Jumlah`, `SubTotal`) VALUES
 (1, 'O-1', '2tsc', 3, '21000.00');
 
 --
--- Triggers `detail`
+-- Trigger `detail`
 --
 DELIMITER $$
 CREATE TRIGGER `kembalikan_obat` AFTER DELETE ON `detail` FOR EACH ROW BEGIN
@@ -80,7 +79,7 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
--- Table structure for table `dokter`
+-- Struktur dari tabel `dokter`
 --
 
 CREATE TABLE `dokter` (
@@ -94,19 +93,19 @@ CREATE TABLE `dokter` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `dokter`
+-- Dumping data untuk tabel `dokter`
 --
 
 INSERT INTO `dokter` (`KodeDokter`, `NamaDokter`, `Spesialis`, `AlamatDokter`, `TeleponDokter`, `Tarif`, `KodePoli`) VALUES
-('DO-1', 'Dokter Gigi', 'Gigi', 'Malang', '0000', '100000.00', 'PO-1'),
-('DO-2', 'Dokter Jantung', 'Jantung', 'Malang', '0000', '700000.00', 'PO-2'),
-('DO-3', 'Dokter Ginjal', 'Ginjal', 'Malang', '0000', '50000.00', 'PO-2'),
-('DO-4', 'Dokter Usus', 'Usus', 'Malang', '0000', '150000.00', 'PO-2');
+('DO-1', 'Dokter Gigi', 'Gigi', 'Cilegon', '0000', '100000.00', 'PO-1'),
+('DO-2', 'Dokter Jantung', 'Jantung', 'Cilegon', '0000', '700000.00', 'PO-2'),
+('DO-3', 'Dokter Ginjal', 'Ginjal', 'Cilegon', '0000', '50000.00', 'PO-2'),
+('DO-4', 'Dokter Usus', 'Usus', 'Cilegon', '0000', '150000.00', 'PO-2');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `obat`
+-- Struktur dari tabel `obat`
 --
 
 CREATE TABLE `obat` (
@@ -119,7 +118,7 @@ CREATE TABLE `obat` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `obat`
+-- Dumping data untuk tabel `obat`
 --
 
 INSERT INTO `obat` (`KodeObat`, `NamaObat`, `JenisObat`, `Kategori`, `HargaObat`, `StokObat`) VALUES
@@ -130,7 +129,7 @@ INSERT INTO `obat` (`KodeObat`, `NamaObat`, `JenisObat`, `Kategori`, `HargaObat`
 ('O-5', 'Geliga Balsem', 'Pack', 'Bebas', '50000.00', 100);
 
 --
--- Triggers `obat`
+-- Trigger `obat`
 --
 DELIMITER $$
 CREATE TRIGGER `update_subtotal` AFTER UPDATE ON `obat` FOR EACH ROW BEGIN
@@ -144,7 +143,7 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pasien`
+-- Struktur dari tabel `pasien`
 --
 
 CREATE TABLE `pasien` (
@@ -157,20 +156,20 @@ CREATE TABLE `pasien` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `pasien`
+-- Dumping data untuk tabel `pasien`
 --
 
 INSERT INTO `pasien` (`KodePasien`, `NamaPasien`, `AlamatPasien`, `GenderPasien`, `UmurPasien`, `TeleponPasien`) VALUES
-(1, 'Pasien 1', 'Malang', 'P', 17, '0000'),
-(2, 'Pasien 2', 'Malang', 'L', 17, '0000'),
-(3, 'Pasien 3', 'Malang', 'L', 20, '0000'),
+(1, 'Arina', 'Cilegon', 'P', 18, '764912'),
+(2, 'Rusdi ', 'Cilegon', 'L', 24, '987601'),
+(3, 'Mario', 'Cilegon', 'L', 34, '0000'),
 (4, 'Pasien 4', 'Malang', 'L', 15, '0000'),
 (5, 'Pasien 5', 'Malang', 'L', 30, '0000');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pendaftaran`
+-- Struktur dari tabel `pendaftaran`
 --
 
 CREATE TABLE `pendaftaran` (
@@ -182,7 +181,7 @@ CREATE TABLE `pendaftaran` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `pendaftaran`
+-- Dumping data untuk tabel `pendaftaran`
 --
 
 INSERT INTO `pendaftaran` (`NoDaftar`, `WaktuDaftar`, `KodePasien`, `KodeDokter`, `IdUser`) VALUES
@@ -191,7 +190,7 @@ INSERT INTO `pendaftaran` (`NoDaftar`, `WaktuDaftar`, `KodePasien`, `KodeDokter`
 (3, '2017-02-23 17:21:01', 4, 'DO-4', 'ID-1');
 
 --
--- Triggers `pendaftaran`
+-- Trigger `pendaftaran`
 --
 DELIMITER $$
 CREATE TRIGGER `tambah_resep` AFTER INSERT ON `pendaftaran` FOR EACH ROW BEGIN
@@ -204,7 +203,7 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
--- Table structure for table `poli`
+-- Struktur dari tabel `poli`
 --
 
 CREATE TABLE `poli` (
@@ -213,7 +212,7 @@ CREATE TABLE `poli` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `poli`
+-- Dumping data untuk tabel `poli`
 --
 
 INSERT INTO `poli` (`KodePoli`, `NamaPoli`) VALUES
@@ -224,7 +223,7 @@ INSERT INTO `poli` (`KodePoli`, `NamaPoli`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `resep`
+-- Struktur dari tabel `resep`
 --
 
 CREATE TABLE `resep` (
@@ -238,7 +237,7 @@ CREATE TABLE `resep` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `resep`
+-- Dumping data untuk tabel `resep`
 --
 
 INSERT INTO `resep` (`NomorResep`, `TanggalTebus`, `TotalHarga`, `Bayar`, `Kembali`, `NoDaftar`, `IdUser`) VALUES
@@ -247,7 +246,7 @@ INSERT INTO `resep` (`NomorResep`, `TanggalTebus`, `TotalHarga`, `Bayar`, `Kemba
 (3, '2017-02-23', '150000.00', '0.00', '0.00', 3, 'ID-1');
 
 --
--- Triggers `resep`
+-- Trigger `resep`
 --
 DELIMITER $$
 CREATE TRIGGER `hapus_resep` AFTER DELETE ON `resep` FOR EACH ROW BEGIN
@@ -259,7 +258,7 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
--- Table structure for table `useradmin`
+-- Struktur dari tabel `useradmin`
 --
 
 CREATE TABLE `useradmin` (
@@ -274,46 +273,46 @@ CREATE TABLE `useradmin` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `useradmin`
+-- Dumping data untuk tabel `useradmin`
 --
 
 INSERT INTO `useradmin` (`IdUser`, `Nama`, `JenisKelamin`, `Alamat`, `NoTelp`, `Username`, `Password`, `Level`) VALUES
-('ID-1', 'Greggy Gianini Firmansyah', 'L', 'Malang', '0000', 'admin', 'admin', 'Superadmin'),
-('ID-2', 'Pasien', 'P', 'Malang', '0000', 'pasien', 'pasien', 'Pasien'),
-('ID-3', 'Dokter', 'L', 'Malang', '0000', 'dokter', 'dokter', 'Dokter');
+('ID-1', 'Zhafirah', 'P', 'Cilegon', '0000', 'admin', 'admin', 'Superadmin'),
+('ID-2', 'Pasien', 'P', 'Cilegon', '0000', 'pasien', 'pasien', 'Pasien'),
+('ID-3', 'Dokter', 'L', 'Cilegon', '0000', 'dokter', 'dokter', 'Dokter');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `detail`
+-- Indeks untuk tabel `detail`
 --
 ALTER TABLE `detail`
   ADD KEY `KodeObat` (`KodeObat`),
   ADD KEY `detail_ibfk_2` (`NomorResep`);
 
 --
--- Indexes for table `dokter`
+-- Indeks untuk tabel `dokter`
 --
 ALTER TABLE `dokter`
   ADD PRIMARY KEY (`KodeDokter`),
   ADD KEY `KodePoli` (`KodePoli`);
 
 --
--- Indexes for table `obat`
+-- Indeks untuk tabel `obat`
 --
 ALTER TABLE `obat`
   ADD PRIMARY KEY (`KodeObat`);
 
 --
--- Indexes for table `pasien`
+-- Indeks untuk tabel `pasien`
 --
 ALTER TABLE `pasien`
   ADD PRIMARY KEY (`KodePasien`);
 
 --
--- Indexes for table `pendaftaran`
+-- Indeks untuk tabel `pendaftaran`
 --
 ALTER TABLE `pendaftaran`
   ADD PRIMARY KEY (`NoDaftar`),
@@ -322,13 +321,13 @@ ALTER TABLE `pendaftaran`
   ADD KEY `IdUser` (`IdUser`);
 
 --
--- Indexes for table `poli`
+-- Indeks untuk tabel `poli`
 --
 ALTER TABLE `poli`
   ADD PRIMARY KEY (`KodePoli`);
 
 --
--- Indexes for table `resep`
+-- Indeks untuk tabel `resep`
 --
 ALTER TABLE `resep`
   ADD PRIMARY KEY (`NomorResep`),
@@ -336,40 +335,40 @@ ALTER TABLE `resep`
   ADD KEY `resep_ibfk_1` (`NoDaftar`);
 
 --
--- Indexes for table `useradmin`
+-- Indeks untuk tabel `useradmin`
 --
 ALTER TABLE `useradmin`
   ADD PRIMARY KEY (`IdUser`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `resep`
+-- AUTO_INCREMENT untuk tabel `resep`
 --
 ALTER TABLE `resep`
   MODIFY `NomorResep` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- Constraints for dumped tables
+-- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
 --
 
 --
--- Constraints for table `detail`
+-- Ketidakleluasaan untuk tabel `detail`
 --
 ALTER TABLE `detail`
   ADD CONSTRAINT `detail_ibfk_1` FOREIGN KEY (`KodeObat`) REFERENCES `obat` (`KodeObat`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `detail_ibfk_2` FOREIGN KEY (`NomorResep`) REFERENCES `resep` (`NomorResep`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `dokter`
+-- Ketidakleluasaan untuk tabel `dokter`
 --
 ALTER TABLE `dokter`
   ADD CONSTRAINT `dokter_ibfk_1` FOREIGN KEY (`KodePoli`) REFERENCES `poli` (`KodePoli`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `pendaftaran`
+-- Ketidakleluasaan untuk tabel `pendaftaran`
 --
 ALTER TABLE `pendaftaran`
   ADD CONSTRAINT `pendaftaran_ibfk_1` FOREIGN KEY (`KodePasien`) REFERENCES `pasien` (`KodePasien`) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -377,7 +376,7 @@ ALTER TABLE `pendaftaran`
   ADD CONSTRAINT `pendaftaran_ibfk_3` FOREIGN KEY (`IdUser`) REFERENCES `useradmin` (`IdUser`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `resep`
+-- Ketidakleluasaan untuk tabel `resep`
 --
 ALTER TABLE `resep`
   ADD CONSTRAINT `resep_ibfk_1` FOREIGN KEY (`NoDaftar`) REFERENCES `pendaftaran` (`NoDaftar`) ON DELETE CASCADE ON UPDATE CASCADE,
